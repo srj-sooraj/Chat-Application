@@ -55,7 +55,7 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      socket.current = io('http://localhost:5000');
+      socket.current = io(import.meta.env.VITE_SOCKET_URL);
       socket.current.emit('join', user._id);
 
       socket.current.on('receive_message', (data) => {
