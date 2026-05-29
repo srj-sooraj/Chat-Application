@@ -80,8 +80,13 @@ io.on("connection", (socket) => {
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/chat_app";
 
 mongoose.connect(MONGODB_URI)
-  .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log("MongoDB Connection Error:", err));
+  .then(() => {
+    console.log("MongoDB Connected");
+  })
+  .catch((err) => {
+    console.log("FULL MONGODB ERROR:");
+    console.log(err);
+  });
 
 app.get("/", (req, res) => {
   res.send("Chat Server Running");
@@ -91,4 +96,4 @@ const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-});
+});
